@@ -7,5 +7,10 @@ node {
         stage ('Test') {
             sh './jenkins/scripts/test.sh'
         }
+        stage ('Deploy') {
+            sh './jenkins/scripts/delivery.sh'
+            input message : 'Sudah selesai menggunakan React App? (klik "Proceed" untuk mengakhiri)'
+            sh './jenkins/scripts/kill.sh'
+        }
     }
 }
